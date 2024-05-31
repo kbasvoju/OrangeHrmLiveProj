@@ -91,19 +91,19 @@ public class BasePage {
 	        }
 
 	    }
-		
-	public static void initialization() throws InterruptedException {
-			
-			//configSettings.initializePropertiesFile();
-			System.out.println("Opening the browser");
-			System.out.println("//Users//keerthibasvoju//eclipse-workspace//AIAApplication//AIAApplication24//src//main//java//com//aia//qa//config//config.properties");
-			 
-			 driver = new ChromeDriver();
-			 
-			 
-			 driver.manage().window().maximize();
-			 
-		       
-	}
+//		
+//	public static void initialization() throws InterruptedException {
+//			
+//			//configSettings.initializePropertiesFile();
+//			System.out.println("Opening the browser");
+//			System.out.println("//Users//keerthibasvoju//eclipse-workspace//AIAApplication//AIAApplication24//src//main//java//com//aia//qa//config//config.properties");
+//			 
+//			 driver = new ChromeDriver();
+//			 
+//			 
+//			 driver.manage().window().maximize();
+//			 
+//		       
+//	}
 	
 }

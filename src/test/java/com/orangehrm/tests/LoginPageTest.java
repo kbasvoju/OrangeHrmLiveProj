@@ -29,22 +29,24 @@ public class LoginPageTest extends BasePage
 		pimPage = new PIMPage();
 	}
 	
-	@Test(priority=1, description="Verifying loginpage test")
+	@Test(priority=1, description="Verifying loginpage test", groups = {"uitests"})
 	public void ValidateLogin() throws InterruptedException, IOException
 	{
 		loginPage.login("Admin", "admin123");
 		dbPage.ClickOnPimModule();
-		pimPage.AddEmployee();
+		//pimPage.AddEmployee();
+		pimPage.AddEmployeesFromDatabase();
 		//pimPage.enterEmployeeDetails();
-		//pimPage.DeleteEmployee();
+		pimPage.DeleteEmployee();
 	}
 	
 
 	
 	@AfterMethod
 	public void teardown()
-	{
-		driver.quit();
+	{if (driver != null) {
+        driver.quit();
+    }
 	}
     
 }

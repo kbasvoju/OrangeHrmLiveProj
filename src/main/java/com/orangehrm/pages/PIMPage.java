@@ -2,15 +2,14 @@ package com.orangehrm.pages;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
+import java.util.Map;
 
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 import com.orangehrm.base.BasePage;
-import com.orangehrm.util.Utility;
-import com.orangehrm.util.XLSReader;
+import com.orangehrm.utils.Utility;
 
 public class PIMPage extends BasePage{
 	
@@ -130,6 +129,47 @@ public void enterEmployeeDetails() throws InterruptedException, IOException {
 	System.out.println("Entered details of "+ arr.get(0)+ "Successfully");
 	}
 }
+
+
+public void AddEmployeesFromDatabase() throws InterruptedException, IOException {
+    // Fetch employee details from the database
+    Map<Integer, Map<String, String>> employeeDetails = util.fetchEmployeeDetails(6);
+
+    // Iterate over each employee entry
+    for (Map.Entry<Integer, Map<String, String>> entry : employeeDetails.entrySet()) {
+        Map<String, String> employeeData = entry.getValue();
+
+        // Add employee using the retrieved data
+        addEmployeeBtn.click();
+        Utility.waitUntilElement(driver, addEmployeeBtn);
+        addEmployeeBtn.click();
+        Utility.waitUntilElement(driver, empFirstName);
+
+        // Fill form fields with employee details
+        empFirstName.sendKeys(employeeData.get("FirstName"));
+        empLastName.sendKeys(employeeData.get("LastName"));
+        empId.sendKeys(employeeData.get("EmployeeId"));
+        createLoginDetails.click();
+        Utility.waitUntilElement(driver, empUserName);
+        Thread.sleep(5000);
+        empUserName.sendKeys(employeeData.get("UserName"));
+        empPassword.sendKeys(employeeData.get("Pwd"));
+        empConfirmPassword.sendKeys(employeeData.get("Pwd")); // Assuming password confirmation is same as password
+        empSave.click();
+        Thread.sleep(7000);
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
 
 
 

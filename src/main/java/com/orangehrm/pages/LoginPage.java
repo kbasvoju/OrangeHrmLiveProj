@@ -6,8 +6,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 import com.orangehrm.base.BasePage;
-
-import com.orangehrm.util.Utility;
+import com.orangehrm.utils.Utility;
 
 /**
  * Hello world!

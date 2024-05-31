@@ -1,8 +1,12 @@
-package com.orangehrm.util;
+package com.orangehrm.utils;
 
 import java.io.IOException;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.time.Duration;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -69,6 +73,42 @@ public class Utility extends BasePage{
 		String sname = reader.sheetName(sheetNum);
 		
 		return sname;
+	}
+	
+	public Map<Integer, Map<String, String>> fetchEmployeeDetails(int count) {
+	    Map<Integer, Map<String, String>> employeeDetails = new HashMap<>();
+	    
+	    // Execute database query to fetch all employee details
+	    String query = "SELECT * FROM EmployeeDetails"; // Query to fetch all rows
+	    ResultSet resultSet = DatabaseUtils.executeQuery(query);
+	    
+	    try {
+	        int slNo = 1;
+	        while (resultSet.next() && (count == 0 || slNo <= count)) { // Fetch all rows or up to the count limit
+	            Map<String, String> employeeData = new HashMap<>();
+	            
+	            // Retrieve employee details
+	            String firstName = resultSet.getString("FirstName");
+	            String lastName = resultSet.getString("LastName");
+	            String employeeId = resultSet.getString("EmployeeId");
+	            String username = resultSet.getString("UserName");
+	            String password = resultSet.getString("Pwd");
+	            
+	            // Store remaining columns in a map
+	            employeeData.put("FirstName", firstName);
+	            employeeData.put("LastName", lastName);
+	            employeeData.put("EmployeeId", employeeId);
+	            employeeData.put("UserName", username);
+	            employeeData.put("Pwd", password);
+	            
+	            // Store SlNo and remaining columns in a map
+	            employeeDetails.put(slNo, employeeData);
+	            slNo++;
+	        }
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    }
+	    return employeeDetails;
 	}
 	
 }

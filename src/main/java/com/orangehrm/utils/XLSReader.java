@@ -1,4 +1,4 @@
-package com.orangehrm.util;
+package com.orangehrm.utils;
 
 import java.io.File;
 import java.io.FileInputStream;
