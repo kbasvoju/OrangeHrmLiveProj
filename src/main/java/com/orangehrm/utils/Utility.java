@@ -6,12 +6,16 @@ import java.sql.SQLException;
 import java.time.Duration;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 
+import org.apache.poi.ss.usermodel.Sheet;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.annotations.DataProvider;
 
 import com.orangehrm.base.BasePage;
 
@@ -35,26 +39,26 @@ public class Utility extends BasePage{
 
 	}
 	
-	public  ArrayList<String>  getEmployeeDetails(int sheetNum, int rowNum) throws IOException {
+	public  ArrayList<String>  getEmployeeDetailsExcel(int sheetNum, int rowNum) throws IOException {
 		
 	ArrayList<String> arr = new ArrayList<String>();
 	
 	System.out.println("ColumnCount is"+reader.columnCount(sheetNum));
+	System.out.println("RowCount is"+reader.rowCount(sheetNum));
 	
-	
-	String empFirstName = reader.getCellData(sheetNum, rowNum, 1);
+	String empFirstName = reader.getCellDataExcel(sheetNum, rowNum, 1);
 	arr.add(empFirstName); System.out.println("FirstNameis"+empFirstName);
 	
-	String empLastName = reader.getCellData(sheetNum, rowNum, 3);
+	String empLastName = reader.getCellDataExcel(sheetNum, rowNum, 2);
 	arr.add(empLastName);
 	
-	String empId = reader.getCellData(sheetNum, rowNum, 4);
+	String empId = reader.getCellDataExcel(sheetNum, rowNum, 3);
 	arr.add(empId);
 		
-	String empUserName = reader.getCellData(sheetNum, rowNum, 5);
+	String empUserName = reader.getCellDataExcel(sheetNum, rowNum, 4);
 	arr.add(empUserName);
 	
-	String empPassword = reader.getCellData(sheetNum, rowNum, 6);
+	String empPassword = reader.getCellDataExcel(sheetNum, rowNum, 5);
 	arr.add(empPassword); System.out.println("FirstNameis"+empPassword);
 
 	return arr;
@@ -75,7 +79,7 @@ public class Utility extends BasePage{
 		return sname;
 	}
 	
-	public Map<Integer, Map<String, String>> fetchEmployeeDetails(int count) {
+	public Map<Integer, Map<String, String>> fetchEmployeeDetailsDatabase(int count) {
 	    Map<Integer, Map<String, String>> employeeDetails = new HashMap<>();
 	    
 	    // Execute database query to fetch all employee details
@@ -110,5 +114,31 @@ public class Utility extends BasePage{
 	    }
 	    return employeeDetails;
 	}
+	
+	
+	public List<ArrayList<String>> getDataTestng(int sheetnumber) throws IOException{
+	   
+		List<ArrayList<String>> data = new ArrayList<>();
+		
+		for(int rowNum =1; rowNum<7; rowNum++) {
+			
+		ArrayList<String> arrlst= getEmployeeDetailsExcel(sheetnumber, rowNum);
+		data.add(arrlst);
+		
+		}
+		return data;
+	}
+	
+	@DataProvider(name = "ExcelData")
+		public Iterator<Object[]> getExcelData() throws IOException{
+			
+		List<ArrayList<String>> data =  getDataTestng(0);
+		List<Object[]> testData = new ArrayList<>();
+        testData.add(new Object[]{data});
+        return testData.iterator();
+			
+		}
+
+	 
 	
 }

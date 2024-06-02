@@ -1,30 +1,65 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results ignored="0" total="3" passed="3" failed="0" skipped="0">
+<testng-results ignored="4" total="5" passed="1" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2024-05-31T05:28:30 IST" name="Default suite" finished-at="2024-05-31T05:28:32 IST" duration-ms="2082">
+  <suite started-at="2024-06-02T22:36:20 IST" name="Default suite" finished-at="2024-06-02T22:38:28 IST" duration-ms="128701">
     <groups>
-      <group name="apitests">
-        <method signature="RestAssuredApiTest.VerifyGetApi()[pri:0, instance:com.orangehrm.apitests.RestAssuredApiTest@2b6faea6]" name="VerifyGetApi" class="com.orangehrm.apitests.RestAssuredApiTest"/>
-        <method signature="RestAssuredApiTest.VerifyPostApi()[pri:0, instance:com.orangehrm.apitests.RestAssuredApiTest@2b6faea6]" name="VerifyPostApi" class="com.orangehrm.apitests.RestAssuredApiTest"/>
-        <method signature="RestAssuredApiTest.VerifyPutApi()[pri:0, instance:com.orangehrm.apitests.RestAssuredApiTest@2b6faea6]" name="VerifyPutApi" class="com.orangehrm.apitests.RestAssuredApiTest"/>
-      </group> <!-- apitests -->
+      <group name="uitests">
+        <method signature="LoginPageTest.AddEmployeesDataProvider(java.util.List)[pri:5, instance:com.orangehrm.tests.LoginPageTest@cd3fee8]" name="AddEmployeesDataProvider" class="com.orangehrm.tests.LoginPageTest"/>
+      </group> <!-- uitests -->
     </groups>
-    <test started-at="2024-05-31T05:28:30 IST" name="Default test" finished-at="2024-05-31T05:28:32 IST" duration-ms="2082">
-      <class name="com.orangehrm.apitests.RestAssuredApiTest">
-        <test-method signature="VerifyGetApi()[pri:0, instance:com.orangehrm.apitests.RestAssuredApiTest@2b6faea6]" started-at="2024-05-31T05:28:30 IST" name="VerifyGetApi" finished-at="2024-05-31T05:28:32 IST" duration-ms="1294" status="PASS">
+    <test started-at="2024-06-02T22:36:20 IST" name="Default test" finished-at="2024-06-02T22:38:28 IST" duration-ms="128701">
+      <class name="com.orangehrm.tests.LoginPageTest">
+        <test-method is-config="true" signature="setUpSuite()[pri:0, instance:com.orangehrm.tests.LoginPageTest@cd3fee8]" started-at="2024-06-02T22:36:20 IST" name="setUpSuite" finished-at="2024-06-02T22:36:20 IST" duration-ms="118" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- VerifyGetApi -->
-        <test-method signature="VerifyPostApi()[pri:0, instance:com.orangehrm.apitests.RestAssuredApiTest@2b6faea6]" started-at="2024-05-31T05:28:32 IST" name="VerifyPostApi" finished-at="2024-05-31T05:28:32 IST" duration-ms="379" status="PASS">
+        </test-method> <!-- setUpSuite -->
+        <test-method is-config="true" signature="setUp(java.lang.reflect.Method)[pri:0, instance:com.orangehrm.tests.LoginPageTest@cd3fee8]" started-at="2024-06-02T22:36:20 IST" name="setUp" finished-at="2024-06-02T22:36:22 IST" duration-ms="2176" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void com.orangehrm.tests.LoginPageTest.AddEmployeesDataProvider(java.util.List) throws java.lang.InterruptedException,java.io.IOException]]>
+              </value>
+            </param>
+          </params>
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- VerifyPostApi -->
-        <test-method signature="VerifyPutApi()[pri:0, instance:com.orangehrm.apitests.RestAssuredApiTest@2b6faea6]" started-at="2024-05-31T05:28:32 IST" name="VerifyPutApi" finished-at="2024-05-31T05:28:32 IST" duration-ms="391" status="PASS">
+        </test-method> <!-- setUp -->
+        <test-method is-config="true" signature="setUp()[pri:0, instance:com.orangehrm.tests.LoginPageTest@cd3fee8]" started-at="2024-06-02T22:36:22 IST" name="setUp" finished-at="2024-06-02T22:36:33 IST" duration-ms="10601" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- VerifyPutApi -->
-      </class> <!-- com.orangehrm.apitests.RestAssuredApiTest -->
+        </test-method> <!-- setUp -->
+        <test-method signature="AddEmployeesDataProvider(java.util.List)[pri:5, instance:com.orangehrm.tests.LoginPageTest@cd3fee8]" started-at="2024-06-02T22:36:33 IST" name="AddEmployeesDataProvider" description="Adding Employees details from excel sheet using Testng DataProvider" data-provider="ExcelData" finished-at="2024-06-02T22:38:28 IST" duration-ms="115328" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[[Reenu, Desai, 5543.0, rdesai, Rd12345#], [Sachin, Gowarkar, 5544.0, sgowarkar, Sg12345#], [Kavya, Pinchal, 5545.0, kpinchal, Kp12345#], [Raj, Chaddha, 5546.0, rchaddha, Rc12345#], [Revathi , Krishnan, 5547.0, rkrishnan, Rk12345#], [Vinay, Deshpande, 5548.0, vdeshpande, Vd12345#]]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- AddEmployeesDataProvider -->
+        <test-method is-config="true" signature="teardown()[pri:0, instance:com.orangehrm.tests.LoginPageTest@cd3fee8]" started-at="2024-06-02T22:38:28 IST" name="teardown" finished-at="2024-06-02T22:38:28 IST" duration-ms="151" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- teardown -->
+        <test-method is-config="true" signature="tearDown(org.testng.ITestResult)[pri:0, instance:com.orangehrm.tests.LoginPageTest@cd3fee8]" started-at="2024-06-02T22:38:28 IST" name="tearDown" finished-at="2024-06-02T22:38:28 IST" duration-ms="3" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=AddEmployeesDataProvider status=SUCCESS method=LoginPageTest.AddEmployeesDataProvider(java.util.List)[pri:5, instance:com.orangehrm.tests.LoginPageTest@cd3fee8] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method is-config="true" signature="tearDownSuite()[pri:0, instance:com.orangehrm.tests.LoginPageTest@cd3fee8]" started-at="2024-06-02T22:38:28 IST" name="tearDownSuite" finished-at="2024-06-02T22:38:29 IST" duration-ms="149" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDownSuite -->
+      </class> <!-- com.orangehrm.tests.LoginPageTest -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
 </testng-results>

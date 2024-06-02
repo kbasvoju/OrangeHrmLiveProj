@@ -2,6 +2,7 @@ package com.orangehrm.pages;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 import org.openqa.selenium.WebElement;
@@ -80,19 +81,34 @@ public void AddEmployee() throws InterruptedException, IOException {
 	Utility.waitUntilElement(driver, empFirstName);
 	empFirstName.sendKeys("reenu");
 	empLastName.sendKeys("Desai");
+    empId.sendKeys("54657");
 	createLoginDetails.click();
 	Utility.waitUntilElement(driver, empUserName);
-	Thread.sleep(5000);
+	Thread.sleep(2000);
 	empUserName.sendKeys("rdesai");
 	empPassword.sendKeys("Reenu123");
 	empConfirmPassword.sendKeys("Reenu123");
 	empSave.click();
-	Thread.sleep(7000);
+	Thread.sleep(3000);
 }
 
 public void DeleteEmployee() throws InterruptedException, IOException {
+	
+	Utility.waitUntilElement(driver, employeeList);
+	employeeList.click();
+	Thread.sleep(2000);
+	empName.sendKeys("reenu");
+	empSearch.click();
+	Utility.waitUntilElement(driver, empRow);
+	empRow.click();
+	deletedSelected.click();
+	confirmDelete.click();
+	Thread.sleep(3000);
+	
+}
+public void DeleteEmployeeExcel() throws InterruptedException, IOException {
 	for(int r=1; r<7;r++) {
-	ArrayList<String> arr = util.getEmployeeDetails(0, r);
+	ArrayList<String> arr = util.getEmployeeDetailsExcel(0, r);
 	Utility.waitUntilElement(driver, employeeList);
 	employeeList.click();
 	Thread.sleep(2000);
@@ -107,40 +123,40 @@ public void DeleteEmployee() throws InterruptedException, IOException {
 }
 
 
-public void enterEmployeeDetails() throws InterruptedException, IOException {
+public void enterEmployeeDetailsExcel() throws InterruptedException, IOException {
 	
 	
 	for(int r=1; r<7;r++) {
-	ArrayList<String> arr = util.getEmployeeDetails(0, r);
+	ArrayList<String> arr = util.getEmployeeDetailsExcel(0, r);
 	System.out.println("Sheetname is "+ util.getSheetName(0));
 	Utility.waitUntilElement(driver, addEmployeeBtn);
 	addEmployeeBtn.click();
 	Utility.waitUntilElement(driver, empFirstName);
 	empFirstName.sendKeys(arr.get(0));
 	empLastName.sendKeys(arr.get(1));
+	empId.sendKeys(arr.get(2));
 	createLoginDetails.click();
 	Utility.waitUntilElement(driver, empUserName);
-	Thread.sleep(5000);
+	Thread.sleep(2000);
 	empUserName.sendKeys(arr.get(3));
 	empPassword.sendKeys(arr.get(4));
 	empConfirmPassword.sendKeys(arr.get(4));
 	empSave.click();
-	Thread.sleep(5000);
-	System.out.println("Entered details of "+ arr.get(0)+ "Successfully");
+	Thread.sleep(2000);
+	System.out.println("Entered details of "+ arr.get(0)+ " Successfully");
 	}
 }
 
 
 public void AddEmployeesFromDatabase() throws InterruptedException, IOException {
     // Fetch employee details from the database
-    Map<Integer, Map<String, String>> employeeDetails = util.fetchEmployeeDetails(6);
+    Map<Integer, Map<String, String>> employeeDetails = util.fetchEmployeeDetailsDatabase(6);
 
     // Iterate over each employee entry
     for (Map.Entry<Integer, Map<String, String>> entry : employeeDetails.entrySet()) {
         Map<String, String> employeeData = entry.getValue();
 
         // Add employee using the retrieved data
-        addEmployeeBtn.click();
         Utility.waitUntilElement(driver, addEmployeeBtn);
         addEmployeeBtn.click();
         Utility.waitUntilElement(driver, empFirstName);
@@ -151,26 +167,44 @@ public void AddEmployeesFromDatabase() throws InterruptedException, IOException 
         empId.sendKeys(employeeData.get("EmployeeId"));
         createLoginDetails.click();
         Utility.waitUntilElement(driver, empUserName);
-        Thread.sleep(5000);
+        Thread.sleep(2000);
         empUserName.sendKeys(employeeData.get("UserName"));
         empPassword.sendKeys(employeeData.get("Pwd"));
         empConfirmPassword.sendKeys(employeeData.get("Pwd")); // Assuming password confirmation is same as password
         empSave.click();
-        Thread.sleep(7000);
+        Thread.sleep(3000);
     }
+
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+public void addEmployeesDataProvider(List<ArrayList<String>> data) throws InterruptedException {
+	
+		int count = data.size();
+		for(int r=0; r<count; r++) {
+			ArrayList<String> onerowdata = data.get(r);
+//			System.out.println("One row size is "+ onerowdata.size());
+//			for(int i=0; i<onerowdata.size(); i++) {
+//			System.out.println(onerowdata.get(i));
+//			
+//			}
+			addEmployeeBtn.click();
+			Utility.waitUntilElement(driver, addEmployeeBtn);
+			addEmployeeBtn.click();
+			Utility.waitUntilElement(driver, empFirstName);
+			empFirstName.sendKeys(onerowdata.get(0));
+			empLastName.sendKeys(onerowdata.get(1));
+	        empId.sendKeys(onerowdata.get(2));
+			createLoginDetails.click();
+			Utility.waitUntilElement(driver, empUserName);
+			Thread.sleep(2000);
+			empUserName.sendKeys(onerowdata.get(3));
+			empPassword.sendKeys(onerowdata.get(4));
+			empConfirmPassword.sendKeys(onerowdata.get(4));
+			empSave.click();
+			Thread.sleep(3000);
+			
+		
+	
+	}
+}
 }
